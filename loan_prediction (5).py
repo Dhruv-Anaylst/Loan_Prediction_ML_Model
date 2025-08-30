@@ -1,26 +1,14 @@
 import streamlit as st
 import pandas as pd
 import pickle
-import pickle
 import numpy as np
-import pandas as pd
-from flask import Flask, request, render_template
-
-app = Flask(__name__)
 
 # Load the trained model
 with open('loan_pred.pkl', 'rb') as f:
     model = pickle.load(f)
 
-# -----------------------------
-# Load trained model
-# -----------------------------
-    with open('loan_pred.pkl','rb') as f:
-         chatgpt = pickle.load(f)
-# -----------------------------
 st.image('https://images.pexels.com/photos/4386321/pexels-photo-4386321.jpeg')
-# Title
-st.title(" Loan Eligibility Prediction Using Machine Learning")
+st.title("Loan Eligibility Prediction Using Machine Learning")
 
 st.write("""
 Loan Prediction using Machine Learning is an essential problem in the banks and finance industries.  
@@ -61,27 +49,27 @@ input_data = {
 df = pd.DataFrame(input_data)
 
 # Show final input
-st.subheader(" Final Input Data")
+st.subheader("Final Input Data")
 st.write(df)
 
 # Prediction
 if st.button("Predict Loan Status"):
     prediction = model.predict(df)[0]
     if prediction == 1:
-        st.success(" Loan will be APPROVED!")
+        st.success("Loan will be APPROVED!")
     else:
-        st.error(" Loan will be REJECTED!")
+        st.error("Loan will be REJECTED!")
 
 # Show algorithms used (static text)
 st.markdown("""
 ---
 ### Algorithms Used:
-Logistic Regression
-Naive Bayes
-Support Vector Machine (Linear)
-K-Nearest Neighbors
-Decision Tree
-Random Forest
-XGBoost
-Artificial Neural Network (1 Hidden Layer, Keras)
+- Logistic Regression  
+- Naive Bayes  
+- Support Vector Machine (Linear)  
+- K-Nearest Neighbors  
+- Decision Tree  
+- Random Forest  
+- XGBoost  
+- Artificial Neural Network (1 Hidden Layer, Keras)  
 """)
