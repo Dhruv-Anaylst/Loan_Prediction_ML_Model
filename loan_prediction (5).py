@@ -1,6 +1,16 @@
 import streamlit as st
 import pandas as pd
 import pickle
+import pickle
+import numpy as np
+import pandas as pd
+from flask import Flask, request, render_template
+
+app = Flask(__name__)
+
+# Load the trained model
+with open('loan_pred.pkl', 'rb') as f:
+    model = pickle.load(f)
 
 # -----------------------------
 # Load trained model
